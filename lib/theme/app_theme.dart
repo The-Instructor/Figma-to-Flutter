@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart'; // Import package
 
 class AppTheme {
 
   // Light Theme Configuration
   static ThemeData get lightTheme {
-    return ThemeData(
+    final base = ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
       colorScheme: ColorScheme.fromSeed(
@@ -17,11 +18,15 @@ class AppTheme {
         surfaceContainerHigh: Color(0xFFFFFFFF),
       ),
     );
+
+    return base.copyWith(
+      textTheme: GoogleFonts.creepsterTextTheme(base.textTheme), // Apply Google Font globally
+    );
   }
 
   // Dark Theme Configuration
   static ThemeData get darkTheme {
-    return ThemeData(
+    final base = ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
       colorScheme: ColorScheme.fromSeed(
@@ -34,5 +39,9 @@ class AppTheme {
         onSurfaceVariant: Color(0xFF000000),
       ),
     ); 
+
+    return base.copyWith(
+      textTheme: GoogleFonts.creepsterTextTheme(base.textTheme), // Apply Google Font globally
+    );
   }
 }
