@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
               items: _scareLevels,
             ),
             const SizedBox(height: 40),
-            const MapPlaceholder(),
+            const SpookyMap(),
             const SizedBox(height: 24),
             // 3. Camera & Gallery Action Row (Lesson A Placeholders)
             Row(
