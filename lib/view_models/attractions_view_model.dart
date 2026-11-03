@@ -9,11 +9,18 @@ class AttractionsViewModel extends ChangeNotifier {
   List<Attraction> _attractions = [];
   bool _isLoading = false;
   String? _errorMessage;
+  int _maxScareLevel = 3; // Start by showing every haunt
 
   // The View can read these, but only the ViewModel can change them
   List<Attraction> get attractions => List.unmodifiable(_attractions);
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
+  int get maxScareLevel => _maxScareLevel;
+
+  // Only the haunts at or below the chosen scare level
+  List<Attraction> get visibleAttractions => _attractions
+      .where((attraction) => attraction.scareLevel <= _maxScareLevel)
+      .toList();
 
   Future<void> loadAttractions() async {
     _isLoading = true;
@@ -28,5 +35,11 @@ class AttractionsViewModel extends ChangeNotifier {
       _isLoading = false;
       notifyListeners();
     }
+  }
+
+  // Called by the View when the user picks a new scare level (1, 2, or 3)
+  void setMaxScareLevel(int level) {
+    _maxScareLevel = level;
+    notifyListeners();
   }
 }
